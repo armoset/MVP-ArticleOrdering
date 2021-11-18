@@ -18,15 +18,13 @@ export class UebersichtComponent implements OnInit, AfterViewInit {
 
   }
   ngAfterViewInit() {
-
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   public displayedColumns = ['Id', 'Name', 'Beschreibung'];
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-
     this.artikelservice.ArtikelChanged.subscribe(artikel =>{
       this.dataSource.data = artikel;
     });
@@ -35,8 +33,9 @@ export class UebersichtComponent implements OnInit, AfterViewInit {
   async LoadArtikel(){
     this.artikelservice.Artikel = await this.artikelservice.GetArtikel();
   }
-  public applyFilter(input){
-
+  public applyFilter(event){
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }
