@@ -1,0 +1,10 @@
+.viewgrid{
+  padding-left: 5%;
+  max-width: 100 vw;
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+table{
+  width: 100%;
+}
