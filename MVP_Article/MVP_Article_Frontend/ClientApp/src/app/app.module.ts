@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatSidenavModule, MatToolbarModule } from '@angular/material';
+import { MatNativeDateModule, MatSidenavModule, MatToolbarModule, MAT_NATIVE_DATE_FORMATS } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -18,6 +18,7 @@ import { MatSidenavModule, MatToolbarModule } from '@angular/material';
     FormsModule,
     MatToolbarModule,
     MatSidenavModule,
+    MatNativeDateModule,
     RouterModule.forRoot([
       {
         path: '',
@@ -26,7 +27,9 @@ import { MatSidenavModule, MatToolbarModule } from '@angular/material';
     ]),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_NATIVE_DATE_FORMATS, useValue: {useUtc: true}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

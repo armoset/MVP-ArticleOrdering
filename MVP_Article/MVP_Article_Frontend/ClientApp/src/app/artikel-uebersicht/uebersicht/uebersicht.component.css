@@ -8,3 +8,11 @@
 table{
   width: 100%;
 }
+.warenkorb{
+  margin-left: 5%;
+}
+
+.warenkorbItem{
+  margin-right: 5%;
+  margin-bottom: 10px;
+}

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ArtikelUebersichtRoutingModule } from './artikel-uebersicht-routing.module';
 import { UebersichtComponent } from './uebersicht/uebersicht.component';
-import { MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule } from '@angular/material';
+import { MatButtonModule, MatCardModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MatPaginatorModule, MatSortModule, MatTableModule } from '@angular/material';
 
 
 @NgModule({
@@ -15,7 +15,11 @@ import { MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSortModule, 
     MatFormFieldModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatCardModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ]
 })
 export class ArtikelUebersichtModule { }
