@@ -12,4 +12,10 @@ export class BestellService {
     //ToDo
     return Promise.resolve(bestellung);
   }
+
+  public async LadeBestellungen() : Promise<Bestellung[]> {
+    let res: Bestellung[] = [];
+    return Promise.resolve(res);
+  }
+
 }

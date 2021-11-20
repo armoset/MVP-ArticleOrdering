@@ -55,10 +55,10 @@ export class UebersichtComponent implements OnInit, AfterViewInit {
     console.log("remove");
     this.Auswahl.splice(this.Auswahl.indexOf(item), 1);
   }
-  public Versenden(){
+  public async Versenden(){
     const bestellung = new Bestellung();
     bestellung.Warenkorb = this.Auswahl;
     bestellung.Empfaenger = this.Empfaenger;
-    this.bestellungService.Bestellen(bestellung);
+    await this.bestellungService.Bestellen(bestellung);
   }
 }
