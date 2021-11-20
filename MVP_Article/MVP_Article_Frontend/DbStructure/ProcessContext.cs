@@ -70,7 +70,7 @@ namespace MVP_Article_Frontend.DbStructure
             });
             modelBuilder.Entity<Empfaenger>().HasData(new Empfaenger()
             {
-                Id = 1,
+                Id = 2,
                 Name = "Löw",
                 Vorname = "Jogi",
                 Hausnummer = "1",

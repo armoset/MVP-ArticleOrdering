@@ -27,7 +27,7 @@ export class UebersichtComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  public displayedColumns = ['Id', 'Name', 'Beschreibung'];
+  public displayedColumns = ['Id', 'Name'];
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
     this.artikelservice.ArtikelChanged.subscribe(artikel =>{

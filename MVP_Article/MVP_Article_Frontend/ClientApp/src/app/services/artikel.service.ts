@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { EventEmitter, Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Artikel } from '../model/artikel';
 
 @Injectable({
@@ -6,7 +8,7 @@ import { Artikel } from '../model/artikel';
 })
 export class ArtikelService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   private artikel: Artikel[] = [];
   public get Artikel() : Artikel[]{
@@ -18,13 +20,6 @@ export class ArtikelService {
   }
   public ArtikelChanged = new EventEmitter<Artikel[]>()
   public GetArtikel() : Promise<Artikel[]>{
-    //ToDo;
-    return Promise.resolve(      [
-     {
-        Id: 1,
-        Name: "Tomatensuppe",
-        Beschreibung: "Tomatensuppe von Hersteller"
-     }
-    ]);
+    return this.http.get<Artikel[]>(`${environment.ApiUrl}/ArtikelController`).toPromise();
   }
 }

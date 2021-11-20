@@ -1,12 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule, MatSidenavModule, MatToolbarModule, MAT_NATIVE_DATE_FORMATS } from '@angular/material';
+import { HttpClientModule, HttpHandler } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { MatNativeDateModule, MatSidenavModule, MatToolbarModule, MAT_NATIVE_DAT
     BrowserAnimationsModule
   ],
   providers: [
-    {provide: MAT_NATIVE_DATE_FORMATS, useValue: {useUtc: true}}
+    {provide: MAT_NATIVE_DATE_FORMATS, useValue: {useUtc: true}},
+    // { provide: HttpHandler, useClass: HttpInterceptingHandler }
   ],
   bootstrap: [AppComponent]
 })

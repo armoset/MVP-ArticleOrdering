@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -9,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using MVP_Article_Frontend.DbStructure;
 using MVP_Article_Frontend.Model;
 using MVP_Article_Frontend.Utilities;
+using Newtonsoft.Json.Serialization;
 
 namespace MVP_Article
 {
@@ -24,7 +24,9 @@ namespace MVP_Article
         public void ConfigureServices(IServiceCollection services)
         {
             //Hinzufuegen der automatisch generierten Api
-            services.AddMvc()
+
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver())
                 .AddMvcOptions(o => o.Conventions.Add(new GenericApiConvention()))
                 .ConfigureApplicationPartManager(c =>
                     c.FeatureProviders.Add(new GenericControllerProvider<Artikel, ProcessContext>()));
@@ -42,7 +44,7 @@ namespace MVP_Article
             }
 
             services.AddSwaggerGen();
-            services.AddControllersWithViews();
+
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
@@ -96,7 +98,6 @@ namespace MVP_Article
             // Sicherstellen dass die DB existiert
             using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
-
                 var ctx = scope.ServiceProvider.GetRequiredService<ProcessContext>();
                 ctx.Database.EnsureCreated();
                 if (inMem)

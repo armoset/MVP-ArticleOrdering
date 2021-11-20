@@ -6,4 +6,5 @@ export class Bestellung{
   public Warenkorb: Warenkorbeintrag[];
   public EmpfaengerId : number;
   public Empfaenger: Empfaenger;
+  public Lieferdatum: Date;
 }
