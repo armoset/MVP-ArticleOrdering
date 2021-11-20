@@ -96,10 +96,11 @@ namespace MVP_Article
             // Sicherstellen dass die DB existiert
             using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
-                if (inMem)
-                    return;
+
                 var ctx = scope.ServiceProvider.GetRequiredService<ProcessContext>();
                 ctx.Database.EnsureCreated();
+                if (inMem)
+                    return;
                 ctx.Database.Migrate();
             }
         }

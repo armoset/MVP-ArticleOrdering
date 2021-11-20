@@ -20,7 +20,7 @@ namespace MVP_Article_Frontend.Utilities
         [HttpGet]
         public IEnumerable<T> Get()
         {
-            return context.Set<T>().Where(x => !x.Deleted);
+            return context.Set<T>().Where(x => !x.Deleted).ToList();
         }
         [HttpGet("{id}")]
         public T Get(int id)
