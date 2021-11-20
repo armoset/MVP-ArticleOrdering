@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { UebersichtComponent } from './uebersicht/uebersicht.component';
+import { BestelluebersichtComponent } from './bestelluebersicht.component';
 
 
 const routes: Routes = [
   {
     path : '',
-    component: UebersichtComponent
+    component: BestelluebersichtComponent
   },
   {
-    path : ':id',
-    component: UebersichtComponent
+    path : '/{id}',
+    component: BestelluebersichtComponent
   }
 ];
 
@@ -18,4 +18,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class ArtikelUebersichtRoutingModule { }
+export class BestellUebersichtRoutingModule { }

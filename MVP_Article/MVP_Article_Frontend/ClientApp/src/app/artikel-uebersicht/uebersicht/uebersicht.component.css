@@ -5,13 +5,16 @@
   grid-template-columns: 50% 50%;
 }
 
-table{
+.table {
+  display: table;
   width: 100%;
 }
 .warenkorb{
   margin-left: 5%;
 }
-
+tr{
+  width: 100%;
+}
 .warenkorbItem{
   margin-right: 5%;
   margin-bottom: 10px;

@@ -1,17 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { ArtikelUebersichtRoutingModule } from './artikel-uebersicht-routing.module';
-import { UebersichtComponent } from './uebersicht/uebersicht.component';
+import { BestelluebersichtComponent } from './bestelluebersicht/bestelluebersicht.component';
+import { BestellUebersichtRoutingModule } from './bestelluebersicht/bestelluebersicht-routing.module';
 import { MatButtonModule, MatCardModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MatPaginatorModule, MatSortModule, MatTableModule } from '@angular/material';
-import { FilterPipe } from '../pipe/FilterPipe';
-
 
 @NgModule({
-  declarations: [UebersichtComponent, FilterPipe],
+  declarations: [BestelluebersichtComponent],
   imports: [
     CommonModule,
-    ArtikelUebersichtRoutingModule,
+    BestellUebersichtRoutingModule,
     MatInputModule,
     MatFormFieldModule,
     MatTableModule,
@@ -23,4 +20,4 @@ import { FilterPipe } from '../pipe/FilterPipe';
     MatNativeDateModule
   ]
 })
-export class ArtikelUebersichtModule { }
+export class BestellUebersichtModule { }

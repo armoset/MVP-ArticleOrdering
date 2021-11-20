@@ -1,10 +1,10 @@
 import { Empfaenger } from "./empfaenger";
+import { EntityBase } from "./EntityBase";
 import { Warenkorbeintrag } from "./warenkorbeintrag";
 
-export class Bestellung{
-  public Id : number;
-  public Warenkorb: Warenkorbeintrag[];
+export class Bestellung extends EntityBase{
+  public Warenkorb: Warenkorbeintrag[] = [];
   public EmpfaengerId : number;
-  public Empfaenger: Empfaenger;
+  public Empfaenger: Empfaenger = new Empfaenger();
   public Lieferdatum: Date;
 }

@@ -7,10 +7,11 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule, MatSidenavModule, MatToolbarModule, MAT_NATIVE_DATE_FORMATS } from '@angular/material';
 import { HttpClientModule, HttpHandler } from '@angular/common/http';
+import { FilterPipe } from './pipe/FilterPipe';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -22,7 +23,16 @@ import { HttpClientModule, HttpHandler } from '@angular/common/http';
     RouterModule.forRoot([
       {
         path: '',
+        pathMatch: 'full',
+        redirectTo: 'artikel'
+      },
+      {
+        path: 'artikel',
         loadChildren: () => import('./artikel-uebersicht/artikel-uebersicht.module').then(m => m.ArtikelUebersichtModule)
+      },
+      {
+        path: 'order',
+        loadChildren: () => import('./bestell-uebersicht/bestell-uebersicht.module').then(m => m.BestellUebersichtModule)
       }
     ]),
     BrowserAnimationsModule

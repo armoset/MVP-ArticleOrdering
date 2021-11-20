@@ -8,34 +8,35 @@ using System.Threading.Tasks;
 
 namespace MVP_Article_Frontend.Utilities
 {
+    [ApiController]
     [Route("api/[Controller]")]
-    public class ArticleControllerBase<T, C> where T: EntityBase where C : DbContext
+    public partial class ArticleControllerBase<T, C> where T: EntityBase where C : DbContext
     {
-        private C context;
+        protected C context;
         public ArticleControllerBase(C _context)
         {
             this.context = _context;
         }
 
         [HttpGet]
-        public IEnumerable<T> Get()
+        public virtual IEnumerable<T> Get()
         {
             return context.Set<T>().Where(x => !x.Deleted).ToList();
         }
         [HttpGet("{id}")]
-        public T Get(int id)
+        public virtual T Get(int id)
         {
             return context.Find<T>(id);
         }
         [HttpPut]
-        public T Put(T item)
+        public virtual T Put(T item)
         {
-            context.Add(item);
+            context.Update(item);
             context.SaveChanges();
             return item;
         }
         [HttpDelete]
-        public T Delete(T item)
+        public virtual T Delete(T item)
         {
             item.Deleted = true;
             return Put(item);

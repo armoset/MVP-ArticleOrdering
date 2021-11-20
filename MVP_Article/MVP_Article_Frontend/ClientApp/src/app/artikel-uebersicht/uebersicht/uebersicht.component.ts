@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { ActivatedRoute } from '@angular/router';
 import { Artikel } from 'src/app/model/artikel';
 import { Bestellung } from 'src/app/model/bestellung';
 import { Empfaenger } from 'src/app/model/empfaenger';
@@ -15,11 +16,18 @@ import { BestellService } from 'src/app/services/bestell.service';
 export class UebersichtComponent implements OnInit, AfterViewInit {
 
   public dataSource: MatTableDataSource<Artikel>;
-  public Auswahl: Warenkorbeintrag[] = [];
-  public Empfaenger: Empfaenger = new Empfaenger();
+
+  public get Auswahl(): Warenkorbeintrag[]{
+    return this.Bestellung.Warenkorb;
+  };
+  public get Empfaenger(): Empfaenger {
+    return this.Bestellung.Empfaenger;
+  }
+
+  public Bestellung: Bestellung = new Bestellung();
   @ViewChild(MatPaginator, { static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(public artikelservice: ArtikelService, private bestellungService: BestellService) {
+  constructor(public artikelservice: ArtikelService, private bestellungService: BestellService, private route: ActivatedRoute) {
 
   }
   ngAfterViewInit() {
@@ -30,6 +38,11 @@ export class UebersichtComponent implements OnInit, AfterViewInit {
   public displayedColumns = ['Id', 'Name'];
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
+    const id = this.route.snapshot.params['id'];
+      if(id) this.bestellungService.LadeBestellung(id).then(res => {
+        this.Bestellung = res;
+        console.log(this.Bestellung);
+      });
     this.artikelservice.ArtikelChanged.subscribe(artikel =>{
       this.dataSource.data = artikel;
     });
@@ -52,13 +65,12 @@ export class UebersichtComponent implements OnInit, AfterViewInit {
     this.Auswahl.push(eintrag);
   }
   public RemoveItem(item: Warenkorbeintrag){
-    console.log("remove");
-    this.Auswahl.splice(this.Auswahl.indexOf(item), 1);
+    if(!item.Id || item.Id == 0)
+      this.Auswahl.splice(this.Auswahl.indexOf(item), 1);
+    else
+    item.Deleted = true;
   }
   public async Versenden(){
-    const bestellung = new Bestellung();
-    bestellung.Warenkorb = this.Auswahl;
-    bestellung.Empfaenger = this.Empfaenger;
-    await this.bestellungService.Bestellen(bestellung);
+    this.Bestellung = await this.bestellungService.Bestellen(this.Bestellung);
   }
 }

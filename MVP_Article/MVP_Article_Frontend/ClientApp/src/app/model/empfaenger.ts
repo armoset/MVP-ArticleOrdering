@@ -1,5 +1,6 @@
-export class Empfaenger{
-  public Id: number;
+import { EntityBase } from "./EntityBase";
+
+export class Empfaenger extends EntityBase{
   public Name: string = "";
   public Vorname: string = "";
   public Strasse: string = "";

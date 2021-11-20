@@ -6,7 +6,7 @@
     </mat-form-field>
     <div class="mat-elevation-z8 table">
 
-      <table mat-table [dataSource]="dataSource" matSort>
+      <table mat-table class="table" [dataSource]="dataSource" matSort>
         <ng-container matColumnDef="Id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
           <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
@@ -72,7 +72,7 @@
         </mat-card-actions>
     </mat-card>
 
-    <mat-card *ngFor="let art of Auswahl" class="mat-elevation-z8 warenkorbItem">
+    <mat-card *ngFor="let art of Auswahl | FilterPipe" class="mat-elevation-z8 warenkorbItem">
       <mat-card-title>{{ art.Artikel.Name }}</mat-card-title>
       <mat-card-subtitle>{{ art.Artikel.Beschreibung }}</mat-card-subtitle>
       <mat-card-content>
