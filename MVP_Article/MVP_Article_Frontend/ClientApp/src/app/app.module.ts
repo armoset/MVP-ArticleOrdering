@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatNativeDateModule, MatSidenavModule, MatToolbarModule, MAT_NATIVE_DATE_FORMATS } from '@angular/material';
+import { MatListModule, MatNativeDateModule, MatSidenavModule, MatToolbarModule, MAT_NATIVE_DATE_FORMATS } from '@angular/material';
 import { HttpClientModule, HttpHandler } from '@angular/common/http';
 import { FilterPipe } from './pipe/FilterPipe';
 
@@ -20,6 +20,7 @@ import { FilterPipe } from './pipe/FilterPipe';
     MatToolbarModule,
     MatSidenavModule,
     MatNativeDateModule,
+    MatListModule,
     RouterModule.forRoot([
       {
         path: '',

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { ActivatedRoute } from '@angular/router';
 import { Artikel } from 'src/app/model/artikel';
 import { Bestellung } from 'src/app/model/bestellung';
@@ -7,6 +7,7 @@ import { Empfaenger } from 'src/app/model/empfaenger';
 import { Warenkorbeintrag } from 'src/app/model/warenkorbeintrag';
 import { ArtikelService } from 'src/app/services/artikel.service';
 import { BestellService } from 'src/app/services/bestell.service';
+import { ArtikeldialogComponent } from '../artikeldialog/artikeldialog.component';
 
 @Component({
   selector: 'app-uebersicht',
@@ -27,7 +28,7 @@ export class UebersichtComponent implements OnInit, AfterViewInit {
   public Bestellung: Bestellung = new Bestellung();
   @ViewChild(MatPaginator, { static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  constructor(public artikelservice: ArtikelService, private bestellungService: BestellService, private route: ActivatedRoute) {
+  constructor(public artikelservice: ArtikelService, private bestellungService: BestellService, private route: ActivatedRoute, private dialog: MatDialog) {
 
   }
   ngAfterViewInit() {
@@ -35,7 +36,7 @@ export class UebersichtComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  public displayedColumns = ['Id', 'Name'];
+  public displayedColumns = ['Id', 'Name',  'Add', 'Edit', 'Delete'];
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
     const id = this.route.snapshot.params['id'];
@@ -64,6 +65,28 @@ export class UebersichtComponent implements OnInit, AfterViewInit {
     eintrag.Faktor = 1;
     this.Auswahl.push(eintrag);
   }
+
+  public async CreateNew(){
+    this.Edit(new Artikel());
+  }
+
+  public async Edit(artikel : Artikel){
+    const copy: Artikel= new Artikel();
+    Object.assign(copy, artikel);
+
+    const dialogRef = this.dialog.open(ArtikeldialogComponent, {restoreFocus: false, data: copy, width:"350px"});
+    dialogRef.afterClosed().subscribe(async data => {
+      if(!data) return;
+      await this.artikelservice.SaveArtikel(data);
+      this.LoadArtikel();
+    });
+
+  }
+  public async Delete(artikel: Artikel){
+    await this.artikelservice.DeleteArtikel(artikel);
+    this.LoadArtikel();
+  }
+
   public RemoveItem(item: Warenkorbeintrag){
     if(!item.Id || item.Id == 0)
       this.Auswahl.splice(this.Auswahl.indexOf(item), 1);

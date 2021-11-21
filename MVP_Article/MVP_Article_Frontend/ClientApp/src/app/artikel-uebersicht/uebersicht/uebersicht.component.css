@@ -19,3 +19,17 @@ tr{
   margin-right: 5%;
   margin-bottom: 10px;
 }
+.mat-column-Delete {
+  text-align: right;
+  justify-content: flex-end;
+}
+.mat-column-Edit {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.mat-column-Add {
+  text-align: right;
+  justify-content: flex-end;
+}
+

@@ -1,0 +1,16 @@
+<mat-dialog-content>
+  <mat-form-field appearance="standard">
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="data.Name" placeholder="Beschreibung">
+  </mat-form-field>
+<br>
+  <mat-form-field appearance="standard">
+    <mat-label>Beschreibung</mat-label>
+    <textarea matInput [(ngModel)]="data.Beschreibung" placeholder="Beschreibung"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Abbrechen</button>
+  <button mat-button (click)="Speichern()">Speichern</button>
+</mat-dialog-actions>

@@ -21,7 +21,7 @@ export class BestelluebersichtComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator, { static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  public displayedColumns = ['Id', 'Vorname', 'Name', 'Anzahl', 'Strasse', 'Hausnummer', 'Postleitzahl', 'Ort',  'Edit', 'Delete'];
+  public displayedColumns = ['Id', 'Vorname', 'Name', 'Strasse', 'Hausnummer', 'Postleitzahl', 'Ort',  'Edit', 'Delete'];
 
   constructor(private bestellService: BestellService, public route: Router) { }
   public dataSource: MatTableDataSource<Bestellung>;
