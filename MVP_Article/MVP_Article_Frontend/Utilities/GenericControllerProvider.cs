@@ -15,7 +15,7 @@ namespace MVP_Article_Frontend.Utilities
             var currentNamespace = typeof(T).Namespace;
             var currentAssembly = typeof(T).Assembly;
 
-            var candidates = currentAssembly.GetExportedTypes().Where(x => x.Namespace == currentNamespace);
+            var candidates = currentAssembly.GetExportedTypes().Where(x => x.Namespace == currentNamespace && x.!IsAbstract);
             foreach (var candidate in candidates)
             {
                 feature.Controllers.Add(
