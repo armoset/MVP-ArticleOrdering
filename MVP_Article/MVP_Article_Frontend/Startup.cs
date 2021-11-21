@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using MVP_Article_Frontend.DbStructure;
 using MVP_Article_Frontend.Model;
 using MVP_Article_Frontend.Utilities;
@@ -24,6 +25,9 @@ namespace MVP_Article
         public void ConfigureServices(IServiceCollection services)
         {
             //Hinzufuegen der automatisch generierten Api
+            services.AddLogging(loggingBuilder => {
+                loggingBuilder.AddFile("app.log", append: true);
+            });
 
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver())
