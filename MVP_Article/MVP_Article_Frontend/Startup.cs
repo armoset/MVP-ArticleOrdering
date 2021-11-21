@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
@@ -24,8 +25,19 @@ namespace MVP_Article
 
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options => {
+                    options.TokenValidationParameters.ValidateIssuerSigningKey = false;
+                });
+            services.AddAuthorization(options => {
+                options.AddPolicy("Admin", policy => policy.RequireClaim("Admin"));
+            });
+            
+
             //Hinzufuegen der automatisch generierten Api
-            services.AddLogging(loggingBuilder => {
+            services.AddLogging(loggingBuilder =>
+            {
                 loggingBuilder.AddFile("app.log", append: true);
             });
 
@@ -81,6 +93,8 @@ namespace MVP_Article
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Swagger Dokumentation fuer Armin");
                 c.RoutePrefix = "doc";
             });
+            //app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -97,6 +111,7 @@ namespace MVP_Article
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
 
             var inMem = Configuration.GetValue<bool>("InMemory");
             // Sicherstellen dass die DB existiert

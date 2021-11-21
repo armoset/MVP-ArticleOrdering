@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using MVP_Article_Frontend.Model;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace MVP_Article_Frontend.Utilities
 {
-        [ApiController]
-        [Route("api/[Controller]")]
-    public partial class ArticleControllerBase<T, C> where T: EntityBase where C : DbContext
+    [ApiController]
+    [Route("api/[Controller]")]
+    public partial class ArticleControllerBase<T, C> where T : EntityBase where C : DbContext
     {
         protected C context;
         protected ILogger logger;
