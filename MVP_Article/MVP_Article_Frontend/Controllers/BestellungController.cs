@@ -28,7 +28,7 @@ namespace MVP_Article_Frontend.Controllers
         {
             context.Update(item.Empfaenger);
             context.UpdateRange(item.Warenkorb);
-            context.Update(item);
+            context.Update(item); 
             context.SaveChanges();
             return item;
         }

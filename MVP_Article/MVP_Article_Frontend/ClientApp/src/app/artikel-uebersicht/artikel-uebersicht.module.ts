@@ -5,12 +5,14 @@ import { ArtikelUebersichtRoutingModule } from './artikel-uebersicht-routing.mod
 import { UebersichtComponent } from './uebersicht/uebersicht.component';
 import { MatButtonModule, MatCardModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatNativeDateModule, MatPaginatorModule, MatSortModule, MatTableModule } from '@angular/material';
 import { FilterPipe } from '../pipe/FilterPipe';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [UebersichtComponent, FilterPipe],
   imports: [
     CommonModule,
+    FormsModule,
     ArtikelUebersichtRoutingModule,
     MatInputModule,
     MatFormFieldModule,

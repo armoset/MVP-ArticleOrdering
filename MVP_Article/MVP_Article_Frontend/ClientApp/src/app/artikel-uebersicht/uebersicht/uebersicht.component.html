@@ -32,7 +32,7 @@
     </div>
   </div>
   <div class="warenkorb">
-    <mat-form-field appearance="standard" >
+    <mat-form-field appearance="standard">
       <mat-label>Warenkorb</mat-label>
       <input matInput placeholder="Warenkorb" disabled>
     </mat-form-field>
@@ -40,49 +40,49 @@
     <mat-card class="mat-elevation-z8 warenkorbItem">
       <mat-card-title>Empfänger</mat-card-title>
       <mat-card-content>
-        <mat-form-field appearance="standard" >
+        <mat-form-field appearance="standard">
           <mat-label>Vorname</mat-label>
-          <input matInput placeholder="Vorname"[(value)]="Empfaenger.Vorname">
+          <input matInput placeholder="Vorname" [(ngModel)]="Empfaenger.Vorname">
         </mat-form-field>
-        <mat-form-field appearance="standard" >
+        <mat-form-field appearance="standard">
           <mat-label>Name</mat-label>
-          <input matInput placeholder="Name"[(value)]="Empfaenger.Name">
+          <input matInput placeholder="Name" [(ngModel)]="Empfaenger.Name">
         </mat-form-field>
-        <mat-form-field appearance="standard" >
+        <mat-form-field appearance="standard">
           <mat-label>Strasse</mat-label>
-          <input matInput placeholder="Strasse"[(value)]="Empfaenger.Strasse">
+          <input matInput placeholder="Strasse" [(ngModel)]="Empfaenger.Strasse">
         </mat-form-field>
 
-      <mat-form-field appearance="standard" >
-        <mat-label>Hausnummer</mat-label>
-        <input matInput placeholder="Hausnummer"[(value)]="Empfaenger.Hausnummer">
-      </mat-form-field>
-      <mat-form-field appearance="standard" >
-        <mat-label>Postleitzahl</mat-label>
-        <input type="number" matInput placeholder="Postleitzahl"[(value)]="Empfaenger.Postleitzahl">
-      </mat-form-field>
-      <mat-form-field appearance="standard" >
-        <mat-label>Ort</mat-label>
-        <input matInput placeholder="Vorname"[(value)]="Empfaenger.Ort">
-      </mat-form-field>
+        <mat-form-field appearance="standard">
+          <mat-label>Hausnummer</mat-label>
+          <input matInput placeholder="Hausnummer" [(ngModel)]="Empfaenger.Hausnummer">
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <mat-label>Postleitzahl</mat-label>
+          <input type="number" matInput placeholder="Postleitzahl" [(ngModel)]="Empfaenger.Postleitzahl">
+        </mat-form-field>
+        <mat-form-field appearance="standard">
+          <mat-label>Ort</mat-label>
+          <input matInput placeholder="Vorname" [(ngModel)]="Empfaenger.Ort">
+        </mat-form-field>
 
-</mat-card-content>
-        <mat-card-actions>
-          <button (click)="Versenden()" mat-button >Versenden</button>
-        </mat-card-actions>
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="Versenden()" mat-button>Versenden</button>
+      </mat-card-actions>
     </mat-card>
 
     <mat-card *ngFor="let art of Auswahl | FilterPipe" class="mat-elevation-z8 warenkorbItem">
       <mat-card-title>{{ art.Artikel.Name }}</mat-card-title>
       <mat-card-subtitle>{{ art.Artikel.Beschreibung }}</mat-card-subtitle>
       <mat-card-content>
-        <mat-form-field appearance="standard" >
+        <mat-form-field appearance="standard">
           <mat-label>Anzahl</mat-label>
-          <input type="number" matInput placeholder="Warenkorb"[(value)]="art.Faktor">
+          <input type="number" matInput placeholder="Warenkorb" [(ngModel)]="art.Faktor">
         </mat-form-field>
       </mat-card-content>
       <mat-card-actions>
-        <button (click)="RemoveItem(art)" mat-button >Entfernen</button>
+        <button (click)="RemoveItem(art)" mat-button>Entfernen</button>
       </mat-card-actions>
     </mat-card>
   </div>
