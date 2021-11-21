@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace MVP_Article_Frontend.Utilities
 {
-    [ApiController]
-    [Route("api/[Controller]")]
+        [ApiController]
+        [Route("api/[Controller]")]
     public partial class ArticleControllerBase<T, C> where T: EntityBase where C : DbContext
     {
         protected C context;
